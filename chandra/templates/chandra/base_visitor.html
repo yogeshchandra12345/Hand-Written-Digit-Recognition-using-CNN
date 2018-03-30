@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home{% endblock %}</title>
+    <!-- loads the path to your static files  -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'chandra/style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+
+            <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-right">
+                 <li><a href="{% url 'chandra:about' %}" class=""><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;About</a></li>
+                </ul>
+                 <li class="{% block register_active %}{% endblock %}"><a href="{% url 'chandra:register' %}">Register</a></li>
+                 <li class="{% block login_active %}{% endblock %}"><a href="{% url   'chandra:login_user' %}">Log In</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>
+

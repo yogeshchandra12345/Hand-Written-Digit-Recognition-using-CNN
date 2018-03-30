@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    {% load staticfiles %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="{% static 'chandra/sketch.min.js' %}" type="text/javascript"></script>
+
+
+</head>
+</head>
+
+<body>
+
+<br/>
+<br/>
+<br/>
+<div class="container" style="float: center;">
+
+    <div class="page-header">
+        <h2>Digit classifier</h2>
+        <p class="lead">Integration of Random-Forest classifier and Django</p>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <canvas id="sketch" style="border: 5px solid purple; cursor: round;" width="300" height="250"></canvas>
+        </div>
+        <br/>
+        <div class="row" style="padding-top: 5px">
+            <div class="text-center">
+                <button class="btn btn-primary active btn-sm" id="recognizeBtn">Predict</button>
+                <button class="btn btn-primary  active btn-sm" id="clearBtn">Clear</button>
+
+
+
+            </div>
+        </div>
+         <center><h3 id="digit" class="text-xs-center"></h3></center>
+
+    </div>
+
+    <script type="text/javascript">
+
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+     });
+
+
+      $(function() {
+
+        var sketch = $('#sketch').sketch({defaultColor: "#ff0f00",defaultSize:15});
+      });
+
+
+      $('#recognizeBtn').on('click', function (e) {
+        var canvas = document.getElementById('sketch');
+
+        $.ajax({
+          type: "POST",
+          url: '/digit/',
+
+          data: JSON.stringify({'image':canvas.toDataURL()}),
+          contentType: "application/json; charset=utf-8",
+        }).done(function(data) {
+            console.log(data);
+            var text = $('#digit').text();
+            $('#digit').text('predicted digit is '+data)
+        });
+       });
+
+
+      $('#clearBtn').on('click', function (e) {
+        var canvas = document.getElementById('sketch');
+        var context = canvas.getContext('2d');
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        $('#sketch').sketch('actions',[]);
+        $('#digit').text('');
+       });
+
+    </script>
+
+</div>
+
+
+</body>
+
+</html>
