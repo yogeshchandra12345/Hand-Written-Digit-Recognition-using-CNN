@@ -8,7 +8,7 @@ Mysite is a digit recognition using machine learning web application built with 
 - Django 2.0.2
 
 ## Run this code in local machine:
-python manage.py runserver and rout to http://127.0.0.1:8000/recognize/
+python manage.py runserver and visit to http://127.0.0.1:8000/recognize/
 
 
 ## Demo 
