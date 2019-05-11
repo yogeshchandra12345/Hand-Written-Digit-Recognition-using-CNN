@@ -22,5 +22,4 @@ Try Mysite at [http://love2code.pythonanywhere.com/recognize/][2].
 [2]: http://love2code.pythonanywhere.com/recognize/
 [3]: http://love2code.pythonanywhere.com/
 
-<img width="541" alt="digit_recognizer" src="https://user-images.githubusercontent.com/17668203/38405144-032f4812-398c-11e8-9ef8-372fe5c1d5bf.png">
-
+![Alt text](https://raw.githubusercontent.com/yogeshchandra12345/mysite/master/digit_predictor_.gif)
