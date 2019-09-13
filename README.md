@@ -1,6 +1,4 @@
-# Mysite
-
-Mysite is a digit recognition web application using machine learning built with [Python][0] using the [Django Web Framework][1].
+# Hand-Written Digit Recognizer
 
 ## Technology Stack
 
