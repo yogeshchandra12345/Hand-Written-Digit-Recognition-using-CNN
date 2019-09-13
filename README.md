@@ -11,7 +11,7 @@ python manage.py runserver and visit to http://127.0.0.1:8000/recognize/
 
 ## Demo 
 
-Try Mysite at [http://love2code.pythonanywhere.com/recognize/][2].
+Try at [http://love2code.pythonanywhere.com/recognize/][2].
 
 (Deployed this project on [pythonanywhere][3])
 
